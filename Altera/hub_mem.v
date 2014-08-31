@@ -111,9 +111,9 @@ if (ena_bus)
     mem <= a[13:12];
 
 assign q            = !mem[1]   ? {ram_q3, ram_q2, ram_q1, ram_q0}
-`ifndef DE0_NANO
-                    : !mem[0]   ? rom_low_q     // comment out this line for DE0-Nano (sacrifices character rom to fit device)
-`endif						  
+`ifndef DISABLE_CHARACTER_ROM
+                    : !mem[0]   ? rom_low_q
+`endif
                                 : rom_high_q;
 
 endmodule
