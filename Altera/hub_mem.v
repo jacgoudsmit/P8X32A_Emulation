@@ -93,9 +93,19 @@ if (ena_bus && a[13:12] == 2'b10)
 
 // 4096 x 32 rom containing sin table, log table, booter, and interpreter ($C000..$FFFF)
 
-(* ram_init_file = "hub_rom_high.hex" *)    reg [31:0] rom_high [4095:0];
+`ifndef ENABLE_UNSCRAMBLED_ROM
+(* ram_init_file = "hub_rom_high.hex" *)
+`endif
+reg [31:0] rom_high [4095:0];
 
 reg [31:0] rom_high_q;
+
+`ifdef ENABLE_UNSCRAMBLED_ROM
+initial
+begin
+    $readmemh ("hub_rom_high_unscrambled.txt", rom_high);
+end
+`endif
 
 always @(posedge clk_cog)
 if (ena_bus && a[13:12] == 2'b11)

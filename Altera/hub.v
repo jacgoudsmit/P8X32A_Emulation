@@ -137,7 +137,11 @@ if (ena_bus)
 
 // set bus output according to cog[n-2]
 
-wire [31:0] ramq    = !rd ? mem_q : {mem_q[03], mem_q[07], mem_q[21], mem_q[12],    // unscramble rom data if cog loading
+wire [31:0] ramq    = 
+`ifdef ENABLE_UNSCRAMBLED_ROM
+                      mem_q;
+`else
+                      !rd ? mem_q : {mem_q[03], mem_q[07], mem_q[21], mem_q[12],    // unscramble rom data if cog loading
                                      mem_q[06], mem_q[19], mem_q[04], mem_q[17],
                                      mem_q[20], mem_q[15], mem_q[08], mem_q[11],
                                      mem_q[00], mem_q[14], mem_q[30], mem_q[01],
@@ -145,6 +149,8 @@ wire [31:0] ramq    = !rd ? mem_q : {mem_q[03], mem_q[07], mem_q[21], mem_q[12],
                                      mem_q[09], mem_q[18], mem_q[25], mem_q[02],
                                      mem_q[28], mem_q[22], mem_q[13], mem_q[27],
                                      mem_q[29], mem_q[24], mem_q[26], mem_q[10]};
+
+`endif
 
 always @(posedge clk_cog)
     bus_q <=  sd[1] ? sd[0] ? {29'b0, sys_q}                                // cogid/coginit/locknew
