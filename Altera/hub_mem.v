@@ -21,10 +21,46 @@ the Propeller 1 Design.  If not, see <http://www.gnu.org/licenses/>.
 -------------------------------------------------------------------------------
 */
 
+
+// Submodule for one 8-bit block of RAM
+// This is instantiated 4 times to allow writing by byte, word or long
+
+module              byte_ram
+(
+input               clk_cog,
+input               enable,
+input               w,
+input               wb,
+input       [13:0]  a,
+input        [7:0]  d8,
+
+output       [7:0]  q8
+);
+
+parameter HUB_RAM_SIZE_LONGS = 8192;
+
+reg [7:0] ram[HUB_RAM_SIZE_LONGS - 1:0];
+
+always @(posedge clk_cog)
+begin
+    if (enable)
+    begin
+        if (w && wb)
+            ram[a] <= d8;
+        q8 <= ram[a[12:0]];
+    end
+end
+
+endmodule
+
+
+// Hub memory
+
 module              hub_mem
 (
 input               clk_cog,
 input               ena_bus,
+input               nres,
 
 input               w,
 input        [3:0]  wb,
@@ -35,49 +71,22 @@ output      [31:0]  q
 );
 
 
-// 8192 x 32 ram with byte-write enables ($0000..$7FFF)
+reg [31:0] ram_q;
 
-reg [7:0] ram3 [8191:0];
-reg [7:0] ram2 [8191:0];
-reg [7:0] ram1 [8191:0];
-reg [7:0] ram0 [8191:0];
-
-reg [7:0] ram_q3;
-reg [7:0] ram_q2;
-reg [7:0] ram_q1;
-reg [7:0] ram_q0;
-
-always @(posedge clk_cog)
-begin
-    if (ena_bus && !a[13] && w && wb[3])
-        ram3[a[12:0]] <= d[31:24];
-    if (ena_bus && !a[13])
-        ram_q3 <= ram3[a[12:0]];
-end
-
-always @(posedge clk_cog)
-begin
-    if (ena_bus && !a[13] && w && wb[2])
-        ram2[a[12:0]] <= d[23:16];
-    if (ena_bus && !a[13])
-        ram_q2 <= ram2[a[12:0]];
-end
-
-always @(posedge clk_cog)
-begin
-    if (ena_bus && !a[13] && w && wb[1])
-        ram1[a[12:0]] <= d[15:8];
-    if (ena_bus && !a[13])
-        ram_q1 <= ram1[a[12:0]];
-end
-
-always @(posedge clk_cog)
-begin
-    if (ena_bus && !a[13] && w && wb[0])
-        ram0[a[12:0]] <= d[7:0];
-    if (ena_bus && !a[13])
-        ram_q0 <= ram0[a[12:0]];
-end
+genvar i;
+generate
+    for (i = 0; i < 4; i = i + 1)
+    begin : ramgen
+        byte_ram ram_(  .clk_cog    (clk_cog),
+                        .enable     (ena_bus),
+                        .w          (w),
+                        .wb         (wb[i]),
+                        .a          (a),
+                        .d8         (d[(i+1)*8-1:i*8]),
+                        .q8         (ram_q[(i+1)*8-1:i*8])
+                      );
+    end
+endgenerate
 
 
 // 4096 x 32 rom containing character definitions ($8000..$BFFF)
@@ -110,7 +119,7 @@ always @(posedge clk_cog)
 if (ena_bus)
     mem <= a[13:12];
 
-assign q            = !mem[1]   ? {ram_q3, ram_q2, ram_q1, ram_q0}
+assign q            = !mem[1]   ? ram_q
 `ifndef DISABLE_CHARACTER_ROM
                     : !mem[0]   ? rom_low_q
 `endif

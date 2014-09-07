@@ -102,6 +102,7 @@ wire [31:0] mem_q;
 
 hub_mem hub_mem_  ( .clk_cog    (clk_cog),
                     .ena_bus    (ena_bus),
+                    .nres       (nres),
                     .w          (mem_w),
                     .wb         (mem_wb),
                     .a          (ac[15:2]),
