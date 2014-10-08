@@ -188,6 +188,11 @@ output              pll_out,
 input       [31:0]  pin_in,         // pins
 output      [31:0]  pin_out,
 output      [31:0]  pin_dir
+
+input       [31:0]  pin_inb,         // pins for portb
+output      [31:0]  pin_outb,
+output      [31:0]  pin_dirb
+
 );
 
 
@@ -297,6 +302,8 @@ wire wio            = m[3] && cond && i[wr] && (&i[dh:dl+4]);
 
 wire setouta        = wio && i[dl+3:dl] == 4'h4;
 wire setdira        = wio && i[dl+3:dl] == 4'h6;
+wire setoutb        = wio && i[dl+3:dl] == 4'h5;
+wire setdirb        = wio && i[dl+3:dl] == 4'h7;
 wire setctra        = wio && i[dl+3:dl] == 4'h8;
 wire setctrb        = wio && i[dl+3:dl] == 4'h9;
 wire setfrqa        = wio && i[dl+3:dl] == 4'hA;
@@ -331,16 +338,28 @@ cog_ram cog_ram_  ( .clk    (clk_cog),
 
 reg [31:0] outa;
 reg [31:0] dira;
+reg [31:0] outb;
+reg [31:0] dirb;
 
 always @(posedge clk_cog)
 if (setouta)
     outa <= alu_r;
+
+always @(posedge clk_cog)
+if (setoutb)
+    outb <= alu_r;
 
 always @(posedge clk_cog or negedge ena)
 if (!ena)
     dira <= 32'b0;
 else if (setdira)
     dira <= alu_r;
+
+always @(posedge clk_cog or negedge ena)
+if (!ena)
+    dirb <= 32'b0;
+else if (setdirb)
+    dirb <= alu_r;
 
 // ctra/ctrb
 
@@ -526,7 +545,10 @@ wire waiti          = cond && waitx;
 // pins
 
 assign pin_out      = (outa | ctra_pin_out | ctrb_pin_out | vid_pin_out) & dira;
-
 assign pin_dir      = dira;
+
+assign pin_outb      = (outb & dirb);
+assign pin_dirb     = dirb;
+
 
 endmodule

@@ -37,6 +37,10 @@ input       [31:0]  pin_in,         // pin state inputs
 output      [31:0]  pin_out,        // pin state outputs
 output      [31:0]  pin_dir,        // pin direction outputs
 
+input	    [31:0]  pin_inb,
+output	    [31:0]  pin_outb,
+output      [31:0]  pin_dirb,
+
 output       [7:0]  cog_led         // led outputs to show which cogs are active
 );
 
@@ -85,6 +89,10 @@ wire [7:0]          pll;
 wire [7:0] [31:0]   outx;
 wire [7:0] [31:0]   dirx;
 
+wire [7:0] [31:0] outxb;
+wire [7:0] [31:0] dirxb;
+
+
 genvar i;
 generate
     for (i=0; i<8; i++)
@@ -111,7 +119,11 @@ generate
                     .pll_out    (pll[i]),
                     .pin_in     (pin_in),
                     .pin_out    (outx[i]),
-                    .pin_dir    (dirx[i])   );
+                    .pin_dir    (dirx[i]),
+		    .pin_inb    (pin_inb),
+                    .pin_outb   (outxb[i]),
+	            .pin_dirb   (dirxb[i])
+        );
     end
 endgenerate
 
@@ -155,6 +167,8 @@ hub hub_        (   .clk_cog    (clk_cog),
 assign pin_out      = outx[7] | outx[6] | outx[5] | outx[4] | outx[3] | outx[2] | outx[1] | outx[0];
 assign pin_dir      = dirx[7] | dirx[6] | dirx[5] | dirx[4] | dirx[3] | dirx[2] | dirx[1] | dirx[0];
 
+assign pin_outb      = outxb[7] | outxb[6] | outxb[5] | outxb[4] | outxb[3] | outxb[2] | outxb[1] | outxb[0];
+assign pin_dirb      = dirxb[7] | dirxb[6] | dirxb[5] | dirxb[4] | dirxb[3] | dirxb[2] | dirxb[1] | dirxb[0];
 
 // cog leds
 
