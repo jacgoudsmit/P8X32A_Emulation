@@ -1,0 +1,96 @@
+# Copyright (C) 1991-2014 Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus II License Agreement,
+# the Altera MegaCore Function License Agreement, or other 
+# applicable license agreement, including, without limitation, 
+# that your use is for the sole purpose of programming logic 
+# devices manufactured by Altera and sold by Altera or its 
+# authorized distributors.  Please refer to the applicable 
+# agreement for further details.
+
+# Quartus II 64-Bit Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
+# File: /home/syso/Desktop/p8x32a_emulation/Altera/P8X32A.csv
+# Generated on: Wed Oct  8 08:29:29 2014
+
+# Note: The column header names should not be changed if you wish to import this .csv file into the Quartus II software.
+
+To,Direction,Location,I/O Bank,VREF Group,I/O Standard,Reserved,Current Strength,Slew Rate,Differential Pair,Transceiver Analog Settings Protocol,VCCR_GXB/VCCT_GXB Voltage,Transceiver I/O Pin Termination,Transceiver Dedicated Refclk Pin Termination,Transmitter Common Mode Driver Voltage,Transmitter Slew Rate Control,Transmitter Differential Output Voltage,Receiver Buffer Common Mode Voltage
+clock_50,Input,PIN_H13,7A,B7A_N0,,,,,,,,,,,,,
+inp_resn,Input,PIN_M16,5B,B5B_N0,,,,,,,,,,,,,
+io[0],Bidir,PIN_T22,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[1],Bidir,PIN_T15,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[2],Bidir,PIN_R22,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[3],Bidir,PIN_R15,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[4],Bidir,PIN_R21,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[5],Bidir,PIN_R16,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[6],Bidir,PIN_P22,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[7],Bidir,PIN_R17,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[8],Bidir,PIN_N20,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[9],Bidir,PIN_N21,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[10],Bidir,PIN_M22,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[11],Bidir,PIN_L22,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[12],Bidir,PIN_M20,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[13],Bidir,PIN_M21,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[14],Bidir,PIN_K21,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[15],Bidir,PIN_K22,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[16],Bidir,PIN_T19,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[17],Bidir,PIN_T20,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[18],Bidir,PIN_T18,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[19],Bidir,PIN_T17,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[20],Bidir,PIN_L19,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[21],Bidir,PIN_L18,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[22],Bidir,PIN_K17,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[23],Bidir,PIN_L17,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[24],Bidir,PIN_N19,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[25],Bidir,PIN_M18,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[26],Bidir,PIN_N16,5B,B5B_N0,,,Maximum Current,,,,,,,,,,
+io[27],Bidir,PIN_U10,3B,B3B_N0,,,Maximum Current,,,,,,,,,,
+io[28],Bidir,PIN_P17,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[29],Bidir,PIN_P16,5A,B5A_N0,,,Maximum Current,,,,,,,,,,
+io[30],Bidir,PIN_T10,3B,B3B_N0,,,Maximum Current,,,,,,,,,,
+io[31],Bidir,PIN_T9,3B,B3B_N0,,,Maximum Current,,,,,,,,,,
+iob[0],Bidir,PIN_G1,2A,B2A_N0,,,,,,,,,,,,,
+iob[1],Bidir,PIN_G2,2A,B2A_N0,,,,,,,,,,,,,
+iob[2],Bidir,PIN_V10,3B,B3B_N0,,,,,,,,,,,,,
+iob[3],Bidir,PIN_P8,3B,B3B_N0,,,,,,,,,,,,,
+iob[4],Bidir,PIN_R7,3A,B3A_N0,,,,,,,,,,,,,
+iob[5],Bidir,PIN_P7,3A,B3A_N0,,,,,,,,,,,,,
+iob[6],Bidir,PIN_W8,3A,B3A_N0,,,,,,,,,,,,,
+iob[7],Bidir,PIN_W9,3A,B3A_N0,,,,,,,,,,,,,
+iob[8],Bidir,PIN_U6,3A,B3A_N0,,,,,,,,,,,,,
+iob[9],Bidir,PIN_V6,3A,B3A_N0,,,,,,,,,,,,,
+iob[10],Bidir,PIN_U7,3A,B3A_N0,,,,,,,,,,,,,
+iob[11],Bidir,PIN_U8,3A,B3A_N0,,,,,,,,,,,,,
+iob[12],Bidir,PIN_AA7,3B,B3B_N0,,,,,,,,,,,,,
+iob[13],Bidir,PIN_AB7,3B,B3B_N0,,,,,,,,,,,,,
+iob[14],Bidir,PIN_AB6,3B,B3B_N0,,,,,,,,,,,,,
+iob[15],Bidir,PIN_AB5,3B,B3B_N0,,,,,,,,,,,,,
+iob[16],Bidir,PIN_AA8,3B,B3B_N0,,,,,,,,,,,,,
+iob[17],Bidir,PIN_AB8,3B,B3B_N0,,,,,,,,,,,,,
+iob[18],Bidir,PIN_AA10,3B,B3B_N0,,,,,,,,,,,,,
+iob[19],Bidir,PIN_AA9,3B,B3B_N0,,,,,,,,,,,,,
+iob[20],Bidir,PIN_Y10,3B,B3B_N0,,,,,,,,,,,,,
+iob[21],Bidir,PIN_Y9,3B,B3B_N0,,,,,,,,,,,,,
+iob[22],Bidir,PIN_R12,3B,B3B_N0,,,,,,,,,,,,,
+iob[23],Bidir,PIN_P12,3B,B3B_N0,,,,,,,,,,,,,
+iob[24],Bidir,PIN_AB10,3B,B3B_N0,,,,,,,,,,,,,
+iob[25],Bidir,PIN_AB11,3B,B3B_N0,,,,,,,,,,,,,
+iob[26],Bidir,PIN_Y11,3B,B3B_N0,,,,,,,,,,,,,
+iob[27],Bidir,PIN_AA12,3B,B3B_N0,,,,,,,,,,,,,
+iob[28],Bidir,PIN_D3,2A,B2A_N0,,,,,,,,,,,,,
+iob[29],Bidir,PIN_L1,2A,B2A_N0,,,,,,,,,,,,,
+iob[30],Bidir,PIN_E2,2A,B2A_N0,,,,,,,,,,,,,
+iob[31],Bidir,PIN_C2,2A,B2A_N0,,,,,,,,,,,,,
+ledg[0],Output,PIN_N1,2A,B2A_N0,,,,,,,,,,,,,
+ledg[1],Output,PIN_N2,2A,B2A_N0,,,,,,,,,,,,,
+ledg[2],Output,PIN_U1,2A,B2A_N0,,,,,,,,,,,,,
+ledg[3],Output,PIN_U2,2A,B2A_N0,,,,,,,,,,,,,
+ledg[4],Output,PIN_W2,2A,B2A_N0,,,,,,,,,,,,,
+ledg[5],Output,PIN_AA1,2A,B2A_N0,,,,,,,,,,,,,
+ledg[6],Output,PIN_AA2,2A,B2A_N0,,,,,,,,,,,,,
+ledg[7],Output,PIN_Y3,2A,B2A_N0,,,,,,,,,,,,,
