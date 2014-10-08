@@ -187,7 +187,7 @@ output              pll_out,
 
 input       [31:0]  pin_in,         // pins
 output      [31:0]  pin_out,
-output      [31:0]  pin_dir
+output      [31:0]  pin_dir,
 
 input       [31:0]  pin_inb,         // pins for portb
 output      [31:0]  pin_outb,
