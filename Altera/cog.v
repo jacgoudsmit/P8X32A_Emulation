@@ -441,6 +441,7 @@ wire [31:0] sx      = i[im]                 ? {23'b0, i[sh:sl]}
                     : i[sh:sl] == 9'h1F0    ? {16'b0, ptr[27:14], 2'b0}
                     : i[sh:sl] == 9'h1F1    ? cnt
                     : i[sh:sl] == 9'h1F2    ? pin_in
+                    : i[sh:sl] == 9'h1F3    ? pin_inb
                     : i[sh:sl] == 9'h1FC    ? phsa[31:0]
                     : i[sh:sl] == 9'h1FD    ? phsb[31:0]
                                             : sy;
