@@ -47,7 +47,7 @@ defparam core.INVERT_COG_LEDS = `INVERT_COG_LEDS;
 // the chip doesn't have it, but strictly speaking, it makes the ROM content
 // different from the original, so this option is off by default.
 //
-//`define ENABLE_UNSCRAMBLED_ROM
+`define ENABLE_UNSCRAMBLED_ROM
 
 
 //-----------------------------------------------------------------------------
