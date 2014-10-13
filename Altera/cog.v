@@ -408,6 +408,7 @@ assign pll_out      = plla;
 
 wire vidack;
 wire [31:0] vid_pin_out;
+wire [31:0] vid_pin_outb;
 
 cog_vid cog_vid_  ( .clk_cog    (clk_cog),
                     .clk_vid    (plla),
