@@ -40,7 +40,9 @@ input               carrier,
 
 output              ack,
 
-output      [31:0]  pin_out
+output      [31:0]  pin_out,
+output      [31:0]  pin_outb
+
 );
 
 
@@ -189,6 +191,7 @@ wire [7:0] outp     = vid[30] ? vid[29] ? {baseband, broadcast}
                                         : {broadcast, baseband}
                                         : discrete;
 
-assign pin_out      = enable ? {24'b0, outp & vid[7:0]} << {vid[10:9], 3'b000} : 32'b0;
+assign pin_out		= vid[11] ? 32'b0 : (enable ? {24'b0, outp & vid[7:0]} << {vid[10:9], 3'b000} : 32'b0);
+assign pin_outb		= vid[11] ? (enable ? {24'b0, outp & vid[7:0]} << {vid[10:9], 3'b000} : 32'b0) : 32'b0;
 
 endmodule

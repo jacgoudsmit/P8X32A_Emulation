@@ -375,8 +375,10 @@ cog_ctr cog_ctra  ( .clk_cog    (clk_cog),
                     .setphs     (setphsa),
                     .data       (alu_r),
                     .pin_in     (pin_in),
+                    .pin_inb    (pin_inb),
                     .phs        (phsa),
                     .pin_out    (ctra_pin_out),
+                    .pin_outb   (ctra_pin_outb),
                     .pll        (plla) );
 
 wire [32:0] phsb;
@@ -391,8 +393,10 @@ cog_ctr cog_ctrb  ( .clk_cog    (clk_cog),
                     .setphs     (setphsb),
                     .data       (alu_r),
                     .pin_in     (pin_in),
+                    .pin_inb    (pin_inb),
                     .phs        (phsb),
                     .pin_out    (ctrb_pin_out),
+                    .pin_outb   (ctrb_pin_outb),
                     .pll        (pllb) );
 
 assign pll_out      = plla;
@@ -414,7 +418,9 @@ cog_vid cog_vid_  ( .clk_cog    (clk_cog),
                     .aural      (pll_in),
                     .carrier    (pllb),
                     .ack        (vidack),
-                    .pin_out    (vid_pin_out) );
+                    .pin_out    (vid_pin_out),
+                    .pin_outb   (vid_pin_outb),
+);
 
 
 // instruction
@@ -529,8 +535,8 @@ cog_alu cog_alu_  ( .i      (i[oh:ol]),
 reg match;
 
 always @(posedge clk_cog)
-    match <= m[4] && (i[ol+1:ol] == 2'b01 ^ (i[ol+1] ? cnt : pin_in & s) == d);
-
+    //match <= m[4] && (i[ol+1:ol] == 2'b01 ^ (i[ol+1] ? cnt : pin_in & s) == d);
+      match <= m[4] && (i[ol+1:ol] == 2'b01 ^ (i[ol+1] ? cnt : (c ? pin_inb : pin_in) & s) == d);
 
 // wait
 
@@ -548,7 +554,7 @@ wire waiti          = cond && waitx;
 assign pin_out      = (outa | ctra_pin_out | ctrb_pin_out | vid_pin_out) & dira;
 assign pin_dir      = dira;
 
-assign pin_outb      = (outb & dirb);
+assign pin_outb     = (outb | ctra_pin_outb | ctrb_pin_outb | vid_pin_outb) & dirb;
 assign pin_dirb     = dirb;
 
 

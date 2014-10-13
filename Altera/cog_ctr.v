@@ -35,10 +35,12 @@ input               setphs,
 input       [31:0]  data,
 
 input       [31:0]  pin_in,
+input       [31:0]  pin_inb,
 
 output reg  [32:0]  phs,
 
 output      [31:0]  pin_out,
+output      [31:0]  pin_outb,
 
 output              pll
 );
@@ -70,8 +72,7 @@ reg [1:0] dly;
 
 always @(posedge clk_cog)
 if (|ctr[30:29])
-    dly <= {ctr[30] ? pin_in[ctr[13:9]] : dly[0], pin_in[ctr[4:0]]};
-
+    dly <= {ctr[30] ? (ctr[14] ? pin_inb[ctr[13:9]] : pin_ina[ctr[13:9]]) : dly[0], (ctr[5] ? pin_inb[ctr[4:0]] : pin_ina[ctr[4:0]])};
 
 // trigger, outputs
 
@@ -103,8 +104,8 @@ wire outa           = ctr[30] ? 1'b0        : tba[0];       // outa
 
 // output pins
 
-assign pin_out      = outb << ctr[13:9] | outa << ctr[4:0];
-
+assign pin_out      = (ctr[14] ? 32'b0 : outb << ctr[13:9]) | (ctr[5] ? 32'b0 : outa << ctr[4:0]);
+assign pin_outb     = (ctr[14] ? outb << ctr[13:9] : 32'b0) | (ctr[5] ? outa << ctr[4:0] : 32'b0);
 
 // pll simulator
 
