@@ -72,7 +72,7 @@ reg [1:0] dly;
 
 always @(posedge clk_cog)
 if (|ctr[30:29])
-    dly <= {ctr[30] ? (ctr[14] ? pin_inb[ctr[13:9]] : pin_ina[ctr[13:9]]) : dly[0], (ctr[5] ? pin_inb[ctr[4:0]] : pin_ina[ctr[4:0]])};
+    dly <= {ctr[30] ? (ctr[14] ? pin_inb[ctr[13:9]] : pin_in[ctr[13:9]]) : dly[0], (ctr[5] ? pin_inb[ctr[4:0]] : pin_in[ctr[4:0]])};
 
 // trigger, outputs
 
