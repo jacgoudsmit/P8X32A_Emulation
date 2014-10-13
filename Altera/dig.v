@@ -37,8 +37,8 @@ input       [31:0]  pin_in,         // pin state inputs
 output      [31:0]  pin_out,        // pin state outputs
 output      [31:0]  pin_dir,        // pin direction outputs
 
-input	    [31:0]  pin_inb,
-output	    [31:0]  pin_outb,
+input       [31:0]  pin_inb,
+output      [31:0]  pin_outb,
 output      [31:0]  pin_dirb,
 
 output       [7:0]  cog_led         // led outputs to show which cogs are active
@@ -120,9 +120,9 @@ generate
                     .pin_in     (pin_in),
                     .pin_out    (outx[i]),
                     .pin_dir    (dirx[i]),
-		    .pin_inb    (pin_inb),
+                    .pin_inb    (pin_inb),
                     .pin_outb   (outxb[i]),
-	            .pin_dirb   (dirxb[i])
+                    .pin_dirb   (dirxb[i])
         );
     end
 endgenerate

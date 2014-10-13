@@ -28,7 +28,7 @@ input               clock_50,           // clock input
 input               inp_resn,           // reset input (active low)
 
 inout       [31:0]  io,                 // i/o pins
-inout       [31:0]  iob,		// PORTB I/O
+inout       [31:0]  iob,                // PORTB I/O
 output       [7:0]  ledg                // cog leds
 );
 
@@ -40,7 +40,7 @@ output       [7:0]  ledg                // cog leds
 reg                 nres;
 wire         [7:0]  cfg;
 wire        [31:0]  pin_out, pin_dir;
-wire	    [31:0]  pin_outb, pin_dirb;
+wire        [31:0]  pin_outb, pin_dirb;
 
 wire                clkfb, clock_160, clk;
 reg         [23:0]  reset_cnt;
@@ -89,8 +89,8 @@ dig core (  .nres       (nres),
             .pin_out    (pin_out),
             .pin_dir    (pin_dir),
             .pin_inb    (pin_inb),
-	    .pin_outb   (pin_outb),
-	    .pin_dirb   (pin_dirb),
+            .pin_outb   (pin_outb),
+            .pin_dirb   (pin_dirb),
             .cog_led    (ledg) );
 
 always @ (posedge clk_cog)
