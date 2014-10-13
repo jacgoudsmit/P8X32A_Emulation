@@ -365,6 +365,7 @@ else if (setdirb)
 
 wire [32:0] phsa;
 wire [31:0] ctra_pin_out;
+wire [31:0] ctra_pin_outb;
 wire plla;
 
 cog_ctr cog_ctra  ( .clk_cog    (clk_cog),
@@ -383,6 +384,7 @@ cog_ctr cog_ctra  ( .clk_cog    (clk_cog),
 
 wire [32:0] phsb;
 wire [31:0] ctrb_pin_out;
+wire [31:0] ctrb_pin_outb;
 wire pllb;
 
 cog_ctr cog_ctrb  ( .clk_cog    (clk_cog),
