@@ -2,7 +2,7 @@
 
 An example on how to blink a LED with a P8X32A using the Cog's Counter Module.
 
-LED is on pin 0. Blink frequency is 2 Hz.
+LED is on pin 0 of portb (PIN 32). Blink frequency is 2 Hz.
 
 Released for use under GPLv3 or later.
 
