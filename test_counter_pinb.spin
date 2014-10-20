@@ -20,7 +20,7 @@ CON
   ctrmode = %00100
   plldiv = %000
   bpin = 0
-  apin = 0
+  apin = 32
 
 PRI blink
   ctra := 0
