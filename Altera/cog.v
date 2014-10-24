@@ -376,7 +376,6 @@ cog_ctr cog_ctra  ( .clk_cog    (clk_cog),
                     .setphs     (setphsa),
                     .data       (alu_r),
                     .pin_in     (pin_in),
-                    .pin_inb    (pin_inb),
                     .phs        (phsa),
                     .pin_out    (ctra_pin_out),
                     .pin_outb   (ctra_pin_outb),
@@ -395,7 +394,6 @@ cog_ctr cog_ctrb  ( .clk_cog    (clk_cog),
                     .setphs     (setphsb),
                     .data       (alu_r),
                     .pin_in     (pin_in),
-                    .pin_inb    (pin_inb),
                     .phs        (phsb),
                     .pin_out    (ctrb_pin_out),
                     .pin_outb   (ctrb_pin_outb),
@@ -538,7 +536,6 @@ cog_alu cog_alu_  ( .i      (i[oh:ol]),
 reg match;
 
 always @(posedge clk_cog)
-    //match <= m[4] && (i[ol+1:ol] == 2'b01 ^ (i[ol+1] ? cnt : pin_in & s) == d);
       match <= m[4] && (i[ol+1:ol] == 2'b01 ^ (i[ol+1] ? cnt : (c ? pin_inb : pin_in) & s) == d);
 
 // wait
