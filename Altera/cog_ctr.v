@@ -35,7 +35,6 @@ input               setphs,
 input       [31:0]  data,
 
 input       [31:0]  pin_in,
-input       [31:0]  pin_inb,
 
 output reg  [32:0]  phs,
 
