@@ -30,6 +30,7 @@ input        [8:0]  p,
 input               run,
 input               ci,
 input               zi,
+input               wc, // MUL
 
 input       [31:0]  bus_q,
 input               bus_c,
@@ -128,6 +129,15 @@ wire add_c          = i[5:0] == 6'b111000       ? add_co                // cmpsu
                     : i[5] && i[3:2] == 2'b01   ? add_co ^ add_cm       // overflow
                     : i[4:1] == 4'b1000         ? add_cs                // signed
                                                 : add_co ^ add_sub;     // unsigned
+// mul / muls instructions
+
+wire signed [32:0]  mul_s  = { (s[31] & i[0]), s };                     // extend operands by 1 MSB..
+wire signed [32:0]  mul_d  = { (d[31] & i[0]), d };                     // ..forcing to unsigned as appropriate`
+
+wire signed [65:0]  mul_66 = mul_s * mul_d;
+
+wire [31:0]         mul_r  = wc ? mul_66[63:32] : mul_66[31:0];         // carry effect chooses hi/lo 32-bit result
+wire                mul_z  = ~|mul_66[63:0];                            // but zero defined by entire 64 bits
 
 // write-cancel instructions
 
@@ -140,15 +150,17 @@ assign wr           = i[5:2] == 4'b0100     ? i[0] ^ (i[1] ? !add_co : add_cs)  
 assign r            = i[5]                  ? add_r
                     : i[4]                  ? log_r
                     : i[3]                  ? rot_r
+                    : i[2:1] == 2'b10       ? mul_r     // MUL
                     : run || ~&p[8:4]       ? bus_q
                                             : 32'b0;    // write 0's to last 16 registers during load;
 
 
-assign co           = i[5:3] == 3'b000      ? bus_c
+assign co           = i[5:2] == 4'b0000     ? bus_c     // MUL: more selective
+                    : i[5:1] == 5'b00010    ? ci        // MUL: pass through to ensure carry not altered
                     : i[5:3] == 3'b001      ? rot_c
                     : i[5:3] == 3'b011      ? log_c
                                             : add_c;
 
-assign zo           = ~|r && (zi || !(i[5:3] == 3'b110 && (i[2:0] == 3'b001 || i[1])));     // addx/subx/cmpx/addsx/subsx/cmpsx logically AND the old z
-
+assign zo           = i[5:1] == 5'b00010    ? mul_z     // MUL
+                                            : ~|r && (zi || !(i[5:3] == 3'b110 && (i[2:0] == 3'b001 || i[1])));     // addx/subx/cmpx/addsx/subsx/cmpsx logically AND the old z
 endmodule

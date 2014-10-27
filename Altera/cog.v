@@ -523,6 +523,7 @@ cog_alu cog_alu_  ( .i      (i[oh:ol]),
                     .run    (run),
                     .ci     (c),
                     .zi     (z),
+                    .wc     (i[wc]),   // MUL
                     .bus_q  (bus_q),
                     .bus_c  (bus_c),
                     .wr     (alu_wr),
