@@ -1,3 +1,22 @@
+PLEASE NOTE: WE MOVED!
+======================
+This repository was started by Heater and MindRobots when Parallax Inc. first released the Propeller HDL files in 2014. We asked Parallax to establish their own Github presence, and they did.
+
+However, what they didn't do was absorb our repo: instead, they started their own repository for the Propeller 1 HDL files. We decided we had made some mistakes anyway in the old repo (the one you're looking at now), so this would be a good opportunity to start over. So we did.
+
+This old repo is now abandoned, i.e. it won't be maintained anymore. However, some of the improvements that we added here, haven't been added to the new repo yet. Until that happens, we will leave this one online for reference.
+
+The new location is: http://github.com/jacgoudsmit/P1V.
+
+See you there (or in the Parallax forums)!
+
+
+
+
+
+
+
+
 P8X32A_Emulation
 ================
 
